@@ -1,0 +1,6 @@
+brand_name,product_variant_name,product_min_purchase_qty,product_max_purchase_qty,product_price,product_discount,campaign_start_date,campaign_end_date
+AMUL,A,49,191,213.156351363222,8,06/03/2023,07/03/2023
+AMUL,B,78,107,249.03076496525125,3,11/05/2023,23/02/2023
+AMUL,C,73,177,131.75065935793998,13,08/04/2023,26/02/2023
+AMUL,D,76,185,79.53602910707446,3,19/03/2023,07/08/2023
+AMUL,E,68,157,68.29102925254895,14,07/12/2023,05/04/2023

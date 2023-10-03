@@ -1,0 +1,6 @@
+brand_name,product_variant_name,product_min_purchase_qty,product_max_purchase_qty,product_price,product_discount,campaign_start_date,campaign_end_date
+Coca-Cola,A,27,30,220.5401865462181,8,01/02/2023,18/05/2023
+Coca-Cola,B,98,162,146.13860606084972,7,14/02/2023,06/12/2023
+Coca-Cola,C,21,31,60.11584067276961,3,21/09/2023,05/08/2023
+Coca-Cola,D,62,195,94.27730095436199,14,12/02/2023,24/02/2023
+Coca-Cola,E,80,133,214.2197911011196,5,30/08/2023,15/02/2023

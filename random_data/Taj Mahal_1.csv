@@ -1,0 +1,6 @@
+brand_name,product_variant_name,product_min_purchase_qty,product_max_purchase_qty,product_price,product_discount,campaign_start_date,campaign_end_date
+Taj Mahal,A,51,95,110.241352783639,8,31/05/2023,10/08/2023
+Taj Mahal,B,45,165,206.86993368278854,14,03/02/2023,13/03/2023
+Taj Mahal,C,84,87,72.25869097832586,13,05/04/2023,11/06/2023
+Taj Mahal,D,57,187,200.5795078472265,11,08/04/2023,07/01/2023
+Taj Mahal,E,86,106,245.5841843774821,15,23/02/2023,09/10/2023

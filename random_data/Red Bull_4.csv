@@ -1,0 +1,6 @@
+brand_name,product_variant_name,product_min_purchase_qty,product_max_purchase_qty,product_price,product_discount,campaign_start_date,campaign_end_date
+Red Bull,A,57,151,210.15078315396693,2,20/05/2023,25/01/2023
+Red Bull,B,48,131,107.51022774831145,10,08/08/2023,15/12/2023
+Red Bull,C,91,167,39.55724701066792,5,28/07/2023,18/12/2023
+Red Bull,D,18,50,94.124340881316,3,08/10/2023,25/08/2023
+Red Bull,E,62,130,98.73152643682495,11,18/10/2023,27/11/2023

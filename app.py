@@ -6,6 +6,9 @@ from fastapi_sqlalchemy import DBSessionMiddleware, db
 from pydantic import BaseModel
 from typing import Literal
 from sqlalchemy import desc
+import csv
+import io
+from fastapi.responses import StreamingResponse
 
 from sent_email import send_email
 from read_email import read_inbox,download_emails
@@ -46,9 +49,9 @@ async def update_database(data: UpdateDbRequiredSchemas = Depends()):
         for email_data in new_email_data:
             df = download_emails(email_data,mail)
             dataframe = pd.DataFrame(df)
-            cols = [x for x in dataframe.columns if 'date' in x]
-            for col in cols:
-                dataframe[col] = pd.to_datetime(dataframe[col]).dt.strftime('%Y-%m-%d %H:%M:%S')
+            #cols = [x for x in dataframe.columns if 'date' in x]
+            #for col in cols:
+                #dataframe[col] = pd.to_datetime(dataframe[col]).dt.strftime('%Y-%m-%d %H:%M:%S')
             for index, row in dataframe.iterrows():
                 email_entry = ModelEmails(
                     mail_uid=row['mail_uid'],
@@ -72,16 +75,30 @@ async def update_database(data: UpdateDbRequiredSchemas = Depends()):
         mail.logout()
         return JSONResponse(status_code=200, content={"message": f"No new marketing emails received from {data.brand_name}"})
 
-@app.get("/get_data/")
+@app.get("/get_data/", response_class=StreamingResponse)
 async def get_data(data: GetDbRequiredSchemas = Depends()):
-    #return(data.dict())
-    final_data = (db.session.query(ModelEmails).filter_by(brand_name=data.brand_name).order_by(desc(ModelEmails.inserted_at)).limit(data.no_of_emails).all())
-    """latest_uids = (db.session.query(ModelEmails.mail_uid).filter(ModelEmails.brand_name == data.brand_name)
-                   .order_by(desc(ModelEmails.inserted_at)).distinct().limit(data.no_of_emails).all())
-    latest_uids_set = {uid[0] for uid in latest_uids}
-    final_data = (db.session.query(ModelEmails).filter(ModelEmails.mail_uid.in_(latest_uids_set)).all())"""
+    final_data = (
+        db.session.query(ModelEmails)
+        .filter_by(brand_name=data.brand_name)
+        .order_by(desc(ModelEmails.inserted_at))
+        .limit(data.no_of_emails)
+        .all()
+    )
+
     if final_data:
-        return final_data
+        # Convert the data to CSV format
+        output = io.StringIO()
+        writer = csv.writer(output)
+        writer.writerow([column.name for column in ModelEmails.__table__.columns])  # writing headers
+
+        for data_row in final_data:
+            writer.writerow([getattr(data_row, column.name) for column in ModelEmails.__table__.columns])
+
+        output.seek(0)  # go back to the beginning of the StringIO buffer
+
+        # Return the CSV data as a stream
+        return StreamingResponse(iter([output.getvalue()]), media_type="text/csv", headers={
+            "Content-Disposition": f"attachment;filename={data.brand_name}_data.csv"
+        })
     else:
-        return JSONResponse(status_code=400, content={"message": f"No data found for {data.brand_name} Dairy"})
-    
+        return JSONResponse(status_code=400, content={"message": f"No data found for {data.brand_name} Dairy"})    

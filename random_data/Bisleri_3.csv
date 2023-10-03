@@ -1,0 +1,6 @@
+brand_name,product_variant_name,product_min_purchase_qty,product_max_purchase_qty,product_price,product_discount,campaign_start_date,campaign_end_date
+Bisleri,A,38,124,129.55737128341332,6,01/07/2023,02/05/2023
+Bisleri,B,16,115,141.870501060575,10,31/03/2023,03/01/2023
+Bisleri,C,88,172,117.36124363171727,6,17/06/2023,20/09/2023
+Bisleri,D,13,154,33.118795640018554,3,07/06/2023,13/03/2023
+Bisleri,E,96,155,146.91634953320653,2,22/09/2023,29/12/2023
