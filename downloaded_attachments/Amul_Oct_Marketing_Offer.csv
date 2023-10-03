@@ -1,0 +1,6 @@
+product_name,min_quantity,discount_amount,enroll_start_date,enroll_end_date
+A,10,5%,03/10/23,10/10/23
+B,100,6%,10/10/23,17/10/23
+C,110,7%,17/10/23,24/10/23
+D,20,8%,24/10/23,31/10/23
+E,700,9%,31/10/23,07/11/23

@@ -1,0 +1,4 @@
+alembic/*
+__pycache__/*
+mail_service/*
+.env
